@@ -1,0 +1,5 @@
+<div class="fingerprint-auth">
+    <button (click)="authenticate()">Authenticate with Fingerprint</button>
+    <p *ngIf="isSupported === false">Fingerprint not supported. Please try another method.</p>
+  </div>
+  

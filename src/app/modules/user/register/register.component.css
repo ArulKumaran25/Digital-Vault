@@ -1,0 +1,158 @@
+/* Register Container with Background Image */
+.register-container {
+  display: flex;
+  justify-content: flex-end; /* Align form to the right */
+  align-items: center;
+  font-family: 'Georgia', serif;
+  color: #8c7c3d;
+  padding: 50px;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: hidden;
+  background: url("/assets/1740122692756.jpg") no-repeat center center/cover;
+  position: relative;
+}
+
+/* Form Container */
+.form-container {
+  display: flex;
+  justify-content: flex-end; /* Align form to the right */
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Form Box */
+.form-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align content to the left */
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 35px; /* Reduce padding */
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 380px; /* Reduce form width */
+  border: 1px solid rgba(140, 124, 61, 0.3);
+  transition: transform 0.3s ease-in-out;
+  margin-right: 8%; /* Reduce right margin */
+}
+
+.form-box:hover {
+  transform: scale(1.03);
+}
+
+/* Heading */
+h2 {
+  font-size: 1.8rem; /* Reduce font size */
+  margin-bottom: 12px;
+  color: #8c7c3d;
+  text-align: left; /* Align left */
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Labels */
+label {
+  font-size: 0.95rem; /* Reduce font size */
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 3px;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 8px; /* Reduce padding */
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Slightly smaller border-radius */
+  font-size: 0.95rem; /* Reduce font size */
+  background: #fff;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #8c7c3d;
+  outline: none;
+  box-shadow: 0 0 5px rgba(140, 124, 61, 0.3);
+}
+
+/* Submit Button */
+button[type="submit"] {
+  background: #8c7c3d;
+  color: white;
+  padding: 10px; /* Reduce padding */
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s ease, background 0.3s ease;
+  width: 100%; /* Full width button */
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  background: #c9a73e;
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* Form Status Messages */
+.form-status {
+  margin-top: 10px;
+  text-align: left; /* Align left */
+}
+
+.form-status p {
+  font-size: 13px; /* Reduce font size */
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.form-status .success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.form-status .error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .form-box {
+    margin-right: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    justify-content: center; /* Center form on smaller screens */
+  }
+
+  .form-box {
+    width: 90%;
+    margin: 0;
+    align-items: center; /* Center align content for small screens */
+  }
+
+  h2 {
+    text-align: center; /* Center heading */
+  }
+}

@@ -1,0 +1,97 @@
+
+<div class="welcome-card">
+  <div class="welcome-content">
+    <img src="\assets\admin-avatar2.jpg" alt="Admin Avatar" class="admin-avatar">
+    <div>
+      <h1>👋 Welcome, Admin!</h1>
+      <p>Manage and Monitor user activities effortlessly.</p>
+    </div>
+  </div>
+</div>
+
+<div class="admin-dashboard">
+  <h2>📋 Registered Users</h2>
+  <table *ngIf="users.length > 0; else noUsers">
+    <thead>
+      <tr>
+        <th>👤 Name</th>
+        <th>📧 Email</th>
+        <th>📅 Registered Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | slice:0:visibleUsers">
+        <td>{{ user.name || 'N/A' }}</td>
+        <td>{{ user.email || 'N/A' }}</td>
+        <td>{{ user.timestamp | date:'dd/MM/yyyy, h:mm a' }}</td>
+        <!-- <td>{{user.timestamp || 'N/A'}}</td> -->
+
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noUsers>
+    <p>No registered users found.</p>
+  </ng-template>
+  <button *ngIf="users.length > 5" class="toggle-button" (click)="toggleUsers()">
+    <span>{{ showAllUsers ? 'Show Less' : 'Show More' }}</span>
+    <span>{{ showAllUsers ? '▲' : '▼' }}</span>
+  </button>
+</div>
+
+ 
+  <div class="admin-dashboard">
+  <h2>📂 User Activity Logs</h2>
+  <table *ngIf="activityLogs.length > 0; else noLogs">
+    <thead>
+      <tr>
+        <th>👤 User Email</th>
+        <th>🕒 Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of activityLogs | slice:0:visibleLogs">
+        <td>{{ log.userId || 'N/A' }}</td>
+        <td>{{ log.timestamp | date:'dd/MM/yyyy, h:mm a' }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noLogs>
+    <p>No activity logs found.</p>
+  </ng-template>
+  <button *ngIf="activityLogs.length > 5" class="toggle-button" (click)="toggleLogs()">
+    <span>{{ showAllLogs ? 'Show Less' : 'Show More' }}</span>
+    <span>{{ showAllLogs ? '▲' : '▼' }}</span>
+  </button>
+</div>
+
+  
+
+  <div class="admin-dashboard">
+  <h2>📩 Contact Form Submissions</h2>
+  <table *ngIf="contactForms.length > 0; else noContacts">
+    <thead>
+      <tr>
+        <th>👤 Name</th>
+        <th>📧 Email</th>
+        <th>📝 Message</th>
+        <th>📅 Submitted Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let form of contactForms | slice:0:visibleContacts">
+        <td>{{ form.name || 'N/A' }}</td>
+        <td>{{ form.email || 'N/A' }}</td>
+        <td>{{ form.message || 'N/A' }}</td>
+        <td>{{ form.date || 'N/A' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noContacts>
+    <p>No contact form submissions found.</p>
+  </ng-template>
+  <button *ngIf="contactForms.length > 5" class="toggle-button" (click)="toggleContacts()">
+    <span>{{ showAllContacts ? 'Show Less' : 'Show More' }}</span>
+    <span>{{ showAllContacts ? '▲' : '▼' }}</span>
+  </button>
+</div>

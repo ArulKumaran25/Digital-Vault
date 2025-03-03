@@ -1,0 +1,206 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 35px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: #f7f7f7;
+}
+
+/* Navbar Styles */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff; /* Clean white background */
+  border-bottom: 2px solid #ddd; /* Slightly bolder border */
+  box-shadow: 0px 2px 8px rgba(19, 18, 18, 0.1); /* Soft shadow for depth */
+  z-index: 100;
+  transition: all 0.3s ease-in-out;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  padding: 12px 20px;
+  margin: 0;
+  gap: 80px;
+}
+
+/* Navbar Active Page Styles */
+nav ul li a {
+  text-decoration: none;
+  color: #423c3c; /* Darker text for better visibility */
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+nav ul li a.active {
+  color: #4a3f1e; /* Dark brown/gold shade for active page */
+  position: relative;
+}
+
+nav ul li a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 60%;
+  height: 3px;
+  background-color: #ad9543; /* Gold highlight */
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+/* Hover Effect */
+nav ul li a:hover {
+  background-color: rgba(173, 149, 67, 0.2); /* Light gold tint */
+  color: #ad9543;
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive Navbar */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  color: #ad9543;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-toggle:hover {
+  transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 12px 0;
+    text-align: center;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}
+
+/* User Dropdown */
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.user-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  color: #333;
+}
+
+.dropdown-content {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 5px;
+  min-width: 100px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content button {
+  background: none;
+  display: flex;
+  align-items: center;
+  border: none;
+  width: auto;
+  text-align: left;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+}
+
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  min-width: 300px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn {
+  background: #d9534f; /* Red for logout */
+  color: white;
+  border-radius: 5px;
+}

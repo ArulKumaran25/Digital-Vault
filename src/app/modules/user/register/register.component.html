@@ -1,0 +1,53 @@
+<div class="register-container">
+  <div class="form-container">
+    <div class="form-box">
+      <h2>Register</h2>
+      <form (ngSubmit)="register()" #registerForm="ngForm">
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" [(ngModel)]="name" name="name" required placeholder="Enter your Name"minlength="3"/>
+        </div>
+
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="Enter your Mail id" required />
+          <div *ngIf="email && !isEmailValid()" class="error">
+            <small>Email must not contain uppercase letters and must follow a valid structure.</small>
+          </div>
+        </div>
+
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Enter your password"
+            required />
+          <div *ngIf="password && !isPasswordStrong()" class="error">
+            <small>Password must be at least 6 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.</small>
+          </div>
+        </div>
+
+        <div>
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword"
+            placeholder="Re-Enter your password" required />
+          <div *ngIf="confirmPassword && !passwordsMatch()" class="error">
+            <small>Passwords do not match.</small>
+          </div>
+        </div>
+
+        <button type="submit" [disabled]="registerForm.invalid || !isEmailValid() || !isPasswordStrong()">Register</button>
+        <div class="register-link">
+          <p>Already have an account ? <a routerLink="/user/login">Login</a></p>
+        </div>
+      </form>
+
+      <!-- <div class="fingerprint-section">
+        <button (click)="registerUsingFingerPrint()" >
+          Register with Fingerprint
+        </button>
+        <div *ngIf="fingerprintRegistered">
+          <small>Fingerprint scanned successfully!</small>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>

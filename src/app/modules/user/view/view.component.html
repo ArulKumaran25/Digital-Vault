@@ -1,0 +1,22 @@
+<div class="view-container" *ngIf="file">
+  <h2>{{ file.name }}</h2>
+
+  <!-- Image Preview -->
+  <img *ngIf="file?.name?.endsWith('.png') || file?.name?.endsWith('.jpg') || file?.name?.endsWith('.jpeg')" 
+       [src]="file.base64" 
+       alt="File Preview"
+       class="file-preview-image"/>
+  
+  <!-- PDF Preview -->
+  <iframe *ngIf="file?.name?.endsWith('.pdf')" 
+          [src]="file.base64" 
+          class="file-preview-pdf"></iframe>
+  
+  <!-- Text File Preview -->
+  <pre *ngIf="file?.name?.endsWith('.txt')">{{ textContent }}</pre>
+  
+  <!-- .docx File Preview -->
+  <div *ngIf="file?.name?.endsWith('.docx')" class="docx-preview">
+    <div [innerHTML]="docxContent"></div>
+  </div>
+</div>

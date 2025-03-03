@@ -1,0 +1,470 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+/* General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #8c7c3d;
+}
+h2 {
+  font-size: 1.5rem;
+  color: #555;
+  font-weight: 400;
+}
+
+/* Upload Section */
+.upload-section {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.upload-container {
+  border: 2px dashed #8c7c3d;
+  padding: 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-container:hover {
+  background: rgba(140, 124, 61, 0.1);
+}
+
+.upload-icon {
+  font-size: 50px;
+  color: #8c7c3d;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 20px;
+  background: #8c7c3d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #c3a867;
+}
+
+/* Search & Sorting */
+.search-sort-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.search-input {
+  width: 65%;
+  padding: 12px;
+  border: 2px solid #8c7c3d;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.search-input:focus {
+  border-color: #c3a867;
+  box-shadow: 0 4px 6px rgba(140, 124, 61, 0.3);
+}
+
+/* Files Section */
+.files-section {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* File List */
+.file-list-container {
+  margin-top: 15px;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(140, 124, 61, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+}
+
+.file-item:hover {
+  background: rgba(140, 124, 61, 0.15);
+}
+
+.rename-input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #8c7c3d;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* File Actions */
+.file-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.view { color: #007bff; }
+.edit { color: #ffc107; }
+.save { color: #28a745; }
+.delete { color: #dc3545; }
+.download { color: #17a2b8; }
+
+/* 📌 Automatic Dark Mode Adjustment */
+body.black-background,  /* If you add this class dynamically */
+body.dark-mode,
+body {
+  background: #121212 !important;
+  color: #ffffff !important;
+}
+
+.black-background h1, 
+.black-background h2, 
+.dark-mode h1, 
+.dark-mode h2 {
+  color: #e1c699 !important;
+}
+
+.black-background .upload-section, 
+.black-background .files-section {
+  background: #1e1e1e !important;
+}
+
+.black-background .search-input {
+  background: #2a2a2a !important;
+  color: #ffffff !important;
+  border-color: #e1c699 !important;
+}
+
+.black-background .search-input:focus {
+  border-color: #e1c699 !important;
+  box-shadow: 0 4px 6px rgba(225, 198, 153, 0.3) !important;
+}
+
+.black-background .btn {
+  background: #e1c699 !important;
+  color: #333 !important;
+}
+
+.black-background .btn:hover {
+  background: #c3a867 !important;
+}
+
+.black-background .file-item {
+  background: rgba(225, 198, 153, 0.1) !important;
+}
+
+.black-background .file-item:hover {
+  background: rgba(225, 198, 153, 0.2) !important;
+}
+
+.user-welcome {
+  max-width: 1100px;
+  margin: 40px auto 20px;
+  padding: 25px;
+  background: #ffffff;
+  color: #8c7c3d;
+  border-radius: 15px;
+  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.1), -6px -6px 15px rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+}
+
+.welcome-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 30px;
+}
+
+.welcome-text h1 {
+  font-size: 1.8rem;
+  color: #8c7c3d;
+  font-weight: bold;
+  margin: 0;
+}
+
+.welcome-text p {
+  font-size: 1rem;
+  color: #6d4c41;
+  margin: 5px 0 0;
+  margin-left: 45px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.preview-body {
+  margin-top: 20px;
+}
+
+.file-preview-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.file-preview-pdf {
+  width: 100%;
+  height: 500px;
+}
+
+/* Overlay Styles */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+.extension-arrow {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.preview-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image Container */
+.image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.file-preview-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Scrollable Container for PDF, DOCX, and Text Files */
+.scrollable-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.file-preview-pdf {
+  width: 100%;
+  height: 80vh;
+  border: none;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: monospace;
+  margin: 0;
+}
+
+.no-bullets {
+  list-style-type: none; 
+  padding-left: 0; 
+}
+
+.no-bullets li {
+  margin-bottom: 5px; 
+}
+
+/* Tooltip container */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip-text {
+  visibility: hidden;
+  width: 100px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  margin-left: -50px; /* Center the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+/* Show the tooltip on hover */
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Table Styling */
+.file-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.file-table th, .file-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top; /* Align content to the top */
+}
+
+.file-table th {
+  background-color: #f4f4f4;
+  font-weight: 600;
+  color: #555;
+}
+
+.file-table tr {
+  transition: background-color 0.3s;
+}
+
+.file-table tr:hover {
+  background-color: rgba(140, 124, 61, 0.05);
+}
+
+.file-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center; /* Align buttons vertically */
+}
