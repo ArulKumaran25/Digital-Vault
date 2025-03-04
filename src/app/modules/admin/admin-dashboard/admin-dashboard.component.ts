@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { CouchdbService } from '../../../services/couchdb.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -21,7 +22,13 @@ export class AdminDashboardComponent implements OnInit {
   visibleLogs = 5;
   visibleContacts = 5;
 
-  constructor(private readonly couchdbService: CouchdbService, private readonly router: Router) {}
+  isReplyModalOpen = false;
+  replyToEmail: string = '';
+  replySubject: string = '';
+  replyMessage: string = '';
+  emailError: string = '';
+
+  constructor(private readonly couchdbService: CouchdbService, private readonly router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -32,17 +39,17 @@ export class AdminDashboardComponent implements OnInit {
   fetchUsers() {
     this.couchdbService.getAllRegisteredUser().subscribe(response => {
       if (response.rows) {
-        this.users = response.rows.map((row: any) => row.value); // Extract user details
+        this.users = response.rows.map((row: any) => row.value);
       }
     }, error => {
       console.error("Error fetching users:", error);
     });
   }
 
-  fetchActivityLogs(){
+  fetchActivityLogs() {
     this.couchdbService.getUserActivityLogs().subscribe(response => {
       if (response.rows) {
-        this.activityLogs = response.rows.map((row: any) => row.value); // Extracting log details
+        this.activityLogs = response.rows.map((row: any) => row.value);
       }
     }, error => {
       console.error("Error fetching user activity logs:", error);
@@ -52,6 +59,8 @@ export class AdminDashboardComponent implements OnInit {
   fetchContactForms() {
     this.couchdbService.fetchContactForms().subscribe(response => {
       this.contactForms = response.rows.map((row: any) => row.value);
+    }, error => {
+      console.error("Error fetching contact forms:", error);
     });
   }
 
@@ -59,16 +68,60 @@ export class AdminDashboardComponent implements OnInit {
     this.showAllUsers = !this.showAllUsers;
     this.visibleUsers = this.showAllUsers ? this.users.length : 5;
   }
-  
+
   toggleLogs() {
     this.showAllLogs = !this.showAllLogs;
     this.visibleLogs = this.showAllLogs ? this.activityLogs.length : 5;
   }
-  
+
   toggleContacts() {
     this.showAllContacts = !this.showAllContacts;
     this.visibleContacts = this.showAllContacts ? this.contactForms.length : 5;
   }
-  
-}
 
+  openReplyModal(email: string) {
+    this.replyToEmail = email;
+    this.isReplyModalOpen = true;
+    this.emailError = ''; // Clear previous error
+  }
+
+  closeReplyModal() {
+    this.isReplyModalOpen = false;
+    this.replyToEmail = '';
+    this.replySubject = '';
+    this.replyMessage = '';
+    this.emailError = '';
+  }
+
+  sendReply() {
+    if (!this.replySubject.trim()) {
+      this.emailError = 'Subject is required!';
+      return;
+    }
+    if (!this.replyMessage.trim()) {
+      this.emailError = 'Message cannot be empty!';
+      return;
+    }
+
+    const emailData = {
+      toEmail: this.replyToEmail,
+      subject: this.replySubject,
+      message: this.replyMessage,
+    };
+
+    this.http.post('http://localhost:4000/send-email', emailData).subscribe(
+      (response: any) => {
+        if (response.success) {
+          alert('Email sent successfully!');
+          this.closeReplyModal();
+        } else {
+          this.emailError = response.message || 'Failed to send email';
+        }
+      },
+      (error) => {
+        this.emailError = 'Failed to send email. Please try again.';
+        console.error('Error sending email:', error);
+      }
+    );
+  }
+}

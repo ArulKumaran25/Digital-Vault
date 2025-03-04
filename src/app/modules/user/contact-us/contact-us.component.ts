@@ -8,10 +8,11 @@ import { CouchdbService } from '../../../services/couchdb.service';
   styleUrls: ['./contact-us.component.css'],
 })
 export class ContactUsComponent {
-  contactFormData = {
+  contactFormData : {name : string, email : string, message : string, submittedDate :Date | null} = {
     name: '',
     email: '',
     message: '',
+    submittedDate: new Date() // Timestamp will be stored here
   };
   formStatus: string | null = null;
   isSuccess: boolean = false;
@@ -25,6 +26,9 @@ export class ContactUsComponent {
       this.isSuccess = false;
       return;
     }
+
+    // Set current timestamp before submission
+    this.contactFormData.submittedDate = new Date();
 
     this.couchService.submitContactForm(this.contactFormData).subscribe({
       next: () => {
@@ -51,6 +55,6 @@ export class ContactUsComponent {
 
   // Reset form after successful submission
   private resetForm(): void {
-    this.contactFormData = { name: '', email: '', message: '' };
+    this.contactFormData = { name: '', email: '', message: '', submittedDate: new Date() };
   }
 }

@@ -1,4 +1,3 @@
-
 <div class="welcome-card">
   <div class="welcome-content">
     <img src="\assets\admin-avatar2.jpg" alt="Admin Avatar" class="admin-avatar">
@@ -24,8 +23,6 @@
         <td>{{ user.name || 'N/A' }}</td>
         <td>{{ user.email || 'N/A' }}</td>
         <td>{{ user.timestamp | date:'dd/MM/yyyy, h:mm a' }}</td>
-        <!-- <td>{{user.timestamp || 'N/A'}}</td> -->
-
       </tr>
     </tbody>
   </table>
@@ -38,8 +35,7 @@
   </button>
 </div>
 
- 
-  <div class="admin-dashboard">
+<div class="admin-dashboard">
   <h2>📂 User Activity Logs</h2>
   <table *ngIf="activityLogs.length > 0; else noLogs">
     <thead>
@@ -52,7 +48,6 @@
       <tr *ngFor="let log of activityLogs | slice:0:visibleLogs">
         <td>{{ log.userId || 'N/A' }}</td>
         <td>{{ log.timestamp | date:'dd/MM/yyyy, h:mm a' }}</td>
-
       </tr>
     </tbody>
   </table>
@@ -65,9 +60,7 @@
   </button>
 </div>
 
-  
-
-  <div class="admin-dashboard">
+<div class="admin-dashboard">
   <h2>📩 Contact Form Submissions</h2>
   <table *ngIf="contactForms.length > 0; else noContacts">
     <thead>
@@ -76,6 +69,7 @@
         <th>📧 Email</th>
         <th>📝 Message</th>
         <th>📅 Submitted Date</th>
+        <th>✉️ Action</th>
       </tr>
     </thead>
     <tbody>
@@ -84,6 +78,7 @@
         <td>{{ form.email || 'N/A' }}</td>
         <td>{{ form.message || 'N/A' }}</td>
         <td>{{ form.date || 'N/A' }}</td>
+        <td><button (click)="openReplyModal(form.email)">Reply user</button></td>
       </tr>
     </tbody>
   </table>
@@ -94,4 +89,30 @@
     <span>{{ showAllContacts ? 'Show Less' : 'Show More' }}</span>
     <span>{{ showAllContacts ? '▲' : '▼' }}</span>
   </button>
+</div>
+<!-- Reply Modal -->
+<div *ngIf="isReplyModalOpen" class="modal-overlay">
+  <div class="modal-content">
+    <h2>✉️ Send Reply</h2>
+    <form (ngSubmit)="sendReply()">
+      <label for="toEmail">To:</label>
+      <input id="toEmail" [(ngModel)]="replyToEmail" name="toEmail" readonly>
+
+      <label for="subject">Subject:</label>
+      <input id="subject" [(ngModel)]="replySubject" name="subject" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" [(ngModel)]="replyMessage" name="message" required></textarea>
+
+      <!-- Display error message -->
+      <div *ngIf="emailError" class="error-message">
+        {{ emailError }}
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" (click)="closeReplyModal()">Cancel</button>
+        <button type="submit">Send mail</button>
+      </div>
+    </form>
+  </div>
 </div>
