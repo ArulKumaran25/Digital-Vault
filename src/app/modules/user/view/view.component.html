@@ -6,10 +6,9 @@
        [src]="file.base64" 
        alt="File Preview"
        class="file-preview-image"/>
-  
   <!-- PDF Preview -->
   <iframe *ngIf="file?.name?.endsWith('.pdf')" 
-          [src]="file.base64" 
+          [src]="file.base64"
           class="file-preview-pdf"></iframe>
   
   <!-- Text File Preview -->
@@ -20,3 +19,5 @@
     <div [innerHTML]="docxContent"></div>
   </div>
 </div>
+
+

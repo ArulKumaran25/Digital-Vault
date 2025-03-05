@@ -166,7 +166,7 @@ export class DashboardComponent implements OnInit {
 
         this.snackBar.open(`✅ File "${lastDeletedFile.name}" restored successfully!`, 'Close', {
           duration: 3000,
-          panelClass: ['snackbar-success'],
+          panelClass: ['snackbar-success'], 
         });
       }
     }
