@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-features',
@@ -16,6 +17,7 @@ export class FeaturesComponent {
   ];
 
   searchQuery: string = '';
+  constructor(private readonly router:Router){}
 
   filterFeatures() {
     return this.features.filter(feature =>
@@ -26,5 +28,10 @@ export class FeaturesComponent {
 
   toggleFlip(feature: any) {
     feature.flipped = !feature.flipped;
+  }
+
+  navigateToLogin(event:Event):void{
+    event.stopPropagation();
+    this.router.navigate(['user/login']);
   }
 }
