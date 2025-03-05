@@ -19,6 +19,9 @@
           <p>{{ feature.moreInfo }}</p>
           <img [src]="feature.image" alt="Feature Image" class="feature-image">
         </div>
+        <button class="explore-more-btn" (click)="toggleFlip(feature); $event.stopPropagation()"  (click)="navigateToLogin($event)">
+          Explore More
+        </button>
       </div>
     </div>
   </div>

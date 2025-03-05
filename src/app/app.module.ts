@@ -15,9 +15,11 @@ import { RouterModule } from '@angular/router';
 import { AdminModule } from './modules/admin/admin.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+
 @NgModule({
   declarations: [
-    AppComponent // Root Component
+    AppComponent,
+     // Root Component
   ],
   imports: [
     BrowserModule,

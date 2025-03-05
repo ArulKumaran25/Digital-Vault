@@ -41,7 +41,6 @@ export class CouchdbService {
    return this.http.get<any>(`${this.baseUrl}/_design/views/_view/registered_users`, { headers: this.getHeaders() });
   }
  
-
   // login user
   getData(): Observable<any> {
     const docId = `registerdetails_2_${uuidv4()}`; 
@@ -61,8 +60,6 @@ fetchContactForms(): Observable<any> {
   return this.http.get<any>(`${this.baseUrl}/_design/views/_view/contact_forms`, { headers: this.getHeaders() });
 }
 
-
-
    // Add login activity to activity_logs view (Login)
    logUserActivity(activityLog: any): Observable<any> {
     const activityId = `activitylogs_2_${uuidv4()}`; 
@@ -74,6 +71,7 @@ fetchContactForms(): Observable<any> {
 getUserActivityLogs(): Observable<any> {
   return this.http.get<any>(`${this.baseUrl}/_design/views/_view/activity_logs`, { headers: this.getHeaders() });
 }
+
 
 //
   // Fetch a specific user by email
