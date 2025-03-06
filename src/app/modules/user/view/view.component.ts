@@ -19,7 +19,7 @@ export class ViewComponent implements OnInit {
   imageRotation: number = 0; // For image rotation
   speechText: string | null = null; // For text-to-speech
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private readonly sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     const storedFile = localStorage.getItem('file');
