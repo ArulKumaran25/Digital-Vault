@@ -52,7 +52,6 @@ export class DashboardComponent implements OnInit {
     this.filteredFiles = [...this.uploadedFiles];
   }
 
-  
 
   filterFiles(): void {
     const query = this.searchQuery.toLowerCase();

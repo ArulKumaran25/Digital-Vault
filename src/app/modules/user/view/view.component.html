@@ -1,16 +1,58 @@
 <div class="view-container" *ngIf="file">
-  <h2>{{ file.name }}</h2>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2 class="sidebar-title">{{ file.name }}</h2>
 
-  <!-- PDF Viewer for all files -->
-  <iframe
-    *ngIf="fileViewerUrl"
-    [src]="fileViewerUrl"
-    class="file-preview-pdf">
-  </iframe>
+    <!-- File Metadata -->
+    <div class="file-metadata">
+      <p><strong>Size:</strong> {{ file.size / 1024 | number:'1.2-2' }} KB</p>
+      <p><strong>Last Modified:</strong> {{ file.lastModified | date:'medium' }}</p>
+      <p><strong>Type:</strong> {{ file.type }}</p>
+    </div>
 
-  <!-- Fallback for unsupported files -->
-  <div *ngIf="!fileViewerUrl" class="unsupported-file">
-    <p>This file type is not supported for preview. Please download the file to view it.</p>
-    <button (click)="downloadFile()">Download File</button>
+    <!-- File Actions -->
+    <div class="file-actions">
+      <button (click)="downloadFile()">Download</button>
+      <button (click)="toggleFavorite()">
+        {{ isFavorite ? 'Unfavorite' : 'Favorite' }} ⭐
+      </button>
+      <button (click)="zoomIn()">Zoom In</button>
+      <button (click)="zoomOut()">Zoom Out</button>
+      <button (click)="toggleFullScreen()">{{ isFullScreen ? 'Exit Full Screen' : 'Full Screen' }}</button>
+      <button *ngIf="file.name.endsWith('.txt') || file.name.endsWith('.docx')" (click)="readAloud()">Read Aloud 🔊</button>
+      <button *ngIf="file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')" (click)="rotateImage()">Rotate Image 🔄</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Loading Animation -->
+    <div *ngIf="isProcessing" class="loading-animation">
+      <div class="spinner"></div>
+      <p>Processing large file... ⏳</p>
+    </div>
+
+    <!-- File Preview -->
+    <iframe
+      *ngIf="fileViewerUrl && !isProcessing"
+      [src]="fileViewerUrl"
+      [ngStyle]="{'transform': 'scale(' + zoomLevel + ')'}"
+      class="file-preview-pdf"
+      [class.full-screen]="isFullScreen">
+    </iframe>
+
+    <!-- Image Preview with Rotation -->
+    <img
+      *ngIf="(file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')) && !isProcessing"
+      [src]="file.base64"
+      [ngStyle]="{'transform': 'scale(' + zoomLevel + ') rotate(' + imageRotation + 'deg)'}"
+      class="file-preview-image"
+      [class.full-screen]="isFullScreen">
+
+    <!-- Unsupported File Message -->
+    <div *ngIf="!fileViewerUrl && !isProcessing" class="unsupported-file">
+      <p>This file type is not supported for preview. Please download the file to view it.</p>
+      <button (click)="downloadFile()">Download File</button>
+    </div>
   </div>
 </div>
