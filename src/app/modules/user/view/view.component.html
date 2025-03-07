@@ -19,7 +19,9 @@
       <button (click)="zoomIn()">Zoom In</button>
       <button (click)="zoomOut()">Zoom Out</button>
       <button (click)="toggleFullScreen()">{{ isFullScreen ? 'Exit Full Screen' : 'Full Screen' }}</button>
-      <button *ngIf="file.name.endsWith('.txt') || file.name.endsWith('.docx')" (click)="readAloud()">Read Aloud 🔊</button>
+      <button *ngIf="file.name.endsWith('.txt') || file.name.endsWith('.docx')" (click)="readAloud()" [class.active]="isReading">
+        {{ isReading ? 'Stop Reading' : 'Read Aloud' }} 🔊
+      </button>
       <button *ngIf="file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')" (click)="rotateImage()">Rotate Image 🔄</button>
     </div>
   </div>

@@ -17,9 +17,11 @@ export class ViewComponent implements OnInit {
   isProcessing: boolean = false; // For loading animation
   isFavorite: boolean = false; // For favorite files
   imageRotation: number = 0; // For image rotation
-  speechText: string | null = null; // For text-to-speech
+  isReading: boolean = false; // For read aloud state
+  speechSynthesis: SpeechSynthesis | null = null; // For speech synthesis
+  utterance: SpeechSynthesisUtterance | null = null; // For speech utterance
 
-  constructor(private readonly sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     const storedFile = localStorage.getItem('file');
@@ -35,6 +37,9 @@ export class ViewComponent implements OnInit {
 
     // Load favorite status from localStorage
     this.isFavorite = localStorage.getItem('favorite') === 'true';
+
+    // Initialize speech synthesis
+    this.speechSynthesis = window.speechSynthesis;
   }
 
   prepareFileForView(base64: string, filename: string): void {
@@ -104,11 +109,21 @@ export class ViewComponent implements OnInit {
   }
 
   readAloud(): void {
-    const speechSynthesis = window.speechSynthesis;
-    if (this.textContent || this.docxContent) {
-      const text = this.textContent || this.docxContent;
-      const utterance = new SpeechSynthesisUtterance(text!);
-      speechSynthesis.speak(utterance);
+    if (this.speechSynthesis && (this.textContent || this.docxContent)) {
+      if (this.isReading) {
+        // Stop reading
+        this.speechSynthesis.cancel();
+        this.isReading = false;
+      } else {
+        // Start reading
+        const text = this.textContent || this.docxContent;
+        this.utterance = new SpeechSynthesisUtterance(text!);
+        this.utterance.onend = () => {
+          this.isReading = false; // Update state when reading ends
+        };
+        this.speechSynthesis.speak(this.utterance);
+        this.isReading = true;
+      }
     }
   }
 }

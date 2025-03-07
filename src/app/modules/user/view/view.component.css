@@ -143,6 +143,12 @@
   transform: scale(0.96);
 }
 
+/* Read Aloud Button */
+.file-actions button.active {
+  background-color: #c1dd72; /* Red background when reading */
+  color: #ffffff;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .view-container {
