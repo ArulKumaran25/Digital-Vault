@@ -8,6 +8,52 @@
   </div>
 </div>
 
+<!-- User Registration Chart -->
+<div class="admin-dashboard">
+  <h2>📈 User Registration Trends</h2>
+  <ngx-charts-line-chart
+    [view]="[1000, 400]"
+    [results]="userChartData"
+    [scheme]="userChartOptions.colorScheme"
+    [xAxis]="userChartOptions.showXAxis"
+    [yAxis]="userChartOptions.showYAxis"
+    [legend]="userChartOptions.showLegend"
+    [showXAxisLabel]="userChartOptions.showXAxisLabel"
+    [showYAxisLabel]="userChartOptions.showYAxisLabel"
+    [xAxisLabel]="userChartOptions.xAxisLabel"
+    [yAxisLabel]="userChartOptions.yAxisLabel">
+  </ngx-charts-line-chart>
+</div>
+
+<!-- User Activity Chart -->
+<div class="admin-dashboard">
+  <h2>📊 User Activity Trends</h2>
+  <ngx-charts-bar-vertical
+    [view]="[1000, 400]"
+    [results]="activityChartData"
+    [scheme]="activityChartOptions.colorScheme"
+    [xAxis]="activityChartOptions.showXAxis"
+    [yAxis]="activityChartOptions.showYAxis"
+    [legend]="activityChartOptions.showLegend"
+    [showXAxisLabel]="activityChartOptions.showXAxisLabel"
+    [showYAxisLabel]="activityChartOptions.showYAxisLabel"
+    [xAxisLabel]="activityChartOptions.xAxisLabel"
+    [yAxisLabel]="activityChartOptions.yAxisLabel">
+  </ngx-charts-bar-vertical>
+</div>
+
+<!-- Contact Form Chart -->
+<div class="admin-dashboard">
+  <h2>📨 Contact Form Submissions</h2>
+  <ngx-charts-pie-chart
+    [view]="[1000, 400]"
+    [results]="contactChartData"
+    [scheme]="contactChartOptions.colorScheme"
+    [legend]="contactChartOptions.showLegend">
+  </ngx-charts-pie-chart>
+</div>
+
+<!-- Registered Users Table -->
 <div class="admin-dashboard">
   <h2>📋 Registered Users</h2>
   <table *ngIf="users.length > 0; else noUsers">
@@ -35,6 +81,7 @@
   </button>
 </div>
 
+<!-- User Activity Logs Table -->
 <div class="admin-dashboard">
   <h2>📂 User Activity Logs</h2>
   <table *ngIf="activityLogs.length > 0; else noLogs">
@@ -60,6 +107,7 @@
   </button>
 </div>
 
+<!-- Contact Form Submissions Table -->
 <div class="admin-dashboard">
   <h2>📩 Contact Form Submissions</h2>
   <table *ngIf="contactForms.length > 0; else noContacts">
@@ -90,6 +138,7 @@
     <span>{{ showAllContacts ? '▲' : '▼' }}</span>
   </button>
 </div>
+
 <!-- Reply Modal -->
 <div *ngIf="isReplyModalOpen" class="modal-overlay">
   <div class="modal-content">
