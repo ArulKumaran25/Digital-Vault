@@ -13,7 +13,9 @@
 .sidebar {
   width: 300px;
   background: #ffffff;
-  padding: 20px;
+  padding-top: 60px;
+  padding-right:30px;
+  padding-left:30px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -92,23 +94,97 @@
   100% { transform: rotate(360deg); }
 }
 
-/* File Preview */
-.file-preview-pdf, .file-preview-image {
+/* File Preview Container */
+.file-preview-container {
+  position: relative;
   width: 100%;
   height: 80vh;
   border: 1px solid #cccccc;
   border-radius: 8px;
   margin-top: 20px;
-  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
 }
 
-.file-preview-pdf.full-screen, .file-preview-image.full-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* File Controls */
+.file-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+.mini-button {
+  padding: 5px 10px;
+  background-color: #8c7c3d;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.mini-button:hover {
+  background-color: #c3a867;
+  transform: scale(1.05);
+}
+
+.mini-button:active {
+  transform: scale(0.95);
+}
+
+.copied-message {
+  font-size: 0.9rem;
+  color: #8c7c3d;
+  margin-left: 10px;
+}
+
+/* Zoom Controls */
+.zoom-controls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
+}
+
+/* Text Content */
+.text-content {
   width: 100%;
   height: 100%;
-  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+}
+
+/* PDF Viewer */
+.file-preview-pdf {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Image Container */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Image Preview */
+.file-preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 /* Unsupported File Message */
@@ -143,12 +219,6 @@
   transform: scale(0.96);
 }
 
-/* Read Aloud Button */
-.file-actions button.active {
-  background-color: #c1dd72; /* Red background when reading */
-  color: #ffffff;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .view-container {
@@ -164,7 +234,8 @@
     padding: 10px;
   }
 
-  .file-preview-pdf, .file-preview-image {
+  .file-preview-container {
     height: 60vh;
   }
 }
+

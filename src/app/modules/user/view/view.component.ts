@@ -18,6 +18,8 @@ export class ViewComponent implements OnInit {
   isFavorite: boolean = false; // For favorite files
   imageRotation: number = 0; // For image rotation
   isReading: boolean = false; // For read aloud state
+  isEditing: boolean = false; // For enabling editing
+  copiedText: string | null = null; // For copied text
   speechSynthesis: SpeechSynthesis | null = null; // For speech synthesis
   utterance: SpeechSynthesisUtterance | null = null; // For speech utterance
 
@@ -124,6 +126,40 @@ export class ViewComponent implements OnInit {
         this.speechSynthesis.speak(this.utterance);
         this.isReading = true;
       }
+    }
+  }
+
+  toggleEditing(): void {
+    this.isEditing = !this.isEditing;
+  }
+
+  copyText(): void {
+    const textToCopy = this.textContent || this.docxContent;
+    if (textToCopy) {
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        this.copiedText = 'Text copied to clipboard!';
+        setTimeout(() => this.copiedText = null, 2000); // Clear message after 2 seconds
+      });
+    }
+  }
+
+  saveText(): void {
+    if (this.textContent && this.file) {
+      const blob = new Blob([this.textContent], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = this.file.name;
+      link.click();
+    }
+  }
+
+  saveDocx(): void {
+    if (this.docxContent && this.file) {
+      const blob = new Blob([this.docxContent], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = this.file.name;
+      link.click();
     }
   }
 }

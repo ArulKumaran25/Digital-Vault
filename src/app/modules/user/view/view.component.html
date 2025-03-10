@@ -14,10 +14,8 @@
     <div class="file-actions">
       <button (click)="downloadFile()">Download</button>
       <button (click)="toggleFavorite()">
-        {{ isFavorite ? 'Unfavorite' : 'Favorite' }} ⭐
+        {{ isFavorite ? 'Unfavorite' : 'Favorite' }}⭐
       </button>
-      <button (click)="zoomIn()">Zoom In</button>
-      <button (click)="zoomOut()">Zoom Out</button>
       <button (click)="toggleFullScreen()">{{ isFullScreen ? 'Exit Full Screen' : 'Full Screen' }}</button>
       <button *ngIf="file.name.endsWith('.txt') || file.name.endsWith('.docx')" (click)="readAloud()" [class.active]="isReading">
         {{ isReading ? 'Stop Reading' : 'Read Aloud' }} 🔊
@@ -35,21 +33,45 @@
     </div>
 
     <!-- File Preview -->
-    <iframe
-      *ngIf="fileViewerUrl && !isProcessing"
-      [src]="fileViewerUrl"
-      [ngStyle]="{'transform': 'scale(' + zoomLevel + ')'}"
-      class="file-preview-pdf"
-      [class.full-screen]="isFullScreen">
-    </iframe>
+    <div class="file-preview-container">
+      <!-- Edit and Copy Buttons for PDF, Text, and Document Files -->
+      <div *ngIf="(file.name.endsWith('.txt') || file.name.endsWith('.docx') || file.name.endsWith('.pdf')) && !isProcessing" class="file-controls">
+        <button (click)="toggleEditing()" class="mini-button">
+          {{ isEditing ? '🔒 Disable Editing' : '✏️ Enable Editing' }}
+        </button>
+        <button (click)="copyText()" class="mini-button">📄 Copy Text</button>
+        <button *ngIf="isEditing && (file.name.endsWith('.txt') || file.name.endsWith('.docx'))" (click)="file.name.endsWith('.txt') ? saveText() : saveDocx()" class="mini-button">💾 Save</button>
+        <div *ngIf="copiedText" class="copied-message">{{ copiedText }}</div>
+      </div>
 
-    <!-- Image Preview with Rotation -->
-    <img
-      *ngIf="(file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')) && !isProcessing"
-      [src]="file.base64"
-      [ngStyle]="{'transform': 'scale(' + zoomLevel + ') rotate(' + imageRotation + 'deg)'}"
-      class="file-preview-image"
-      [class.full-screen]="isFullScreen">
+      <!-- Zoom Controls for Images -->
+      <div *ngIf="(file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')) && !isProcessing" class="zoom-controls">
+        <button (click)="zoomIn()" class="mini-button">🔍+</button>
+        <button (click)="zoomOut()" class="mini-button">🔍-</button>
+      </div>
+
+      <!-- PDF Viewer -->
+      <iframe
+        *ngIf="file.name.endsWith('.pdf') && !isProcessing"
+        [src]="fileViewerUrl"
+        class="file-preview-pdf"
+        [class.full-screen]="isFullScreen">
+      </iframe>
+
+      <!-- Text/Document Content -->
+      <div *ngIf="(file.name.endsWith('.txt') || file.name.endsWith('.docx')) && !isProcessing" [contentEditable]="isEditing" class="text-content">
+        {{ textContent || docxContent }}
+      </div>
+
+      <!-- Image Preview -->
+      <div *ngIf="(file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg')) && !isProcessing" class="image-container">
+        <img
+          [src]="file.base64"
+          [ngStyle]="{'transform': 'scale(' + zoomLevel + ') rotate(' + imageRotation + 'deg)'}"
+          class="file-preview-image"
+          [class.full-screen]="isFullScreen">
+      </div>
+    </div>
 
     <!-- Unsupported File Message -->
     <div *ngIf="!fileViewerUrl && !isProcessing" class="unsupported-file">
