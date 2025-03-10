@@ -8,70 +8,41 @@
   </div>
 </div>
 
-<!-- User Registration Chart -->
 <div class="admin-dashboard">
   <h2>📈 User Registration Trends</h2>
-  <ngx-charts-line-chart
-    [view]="[1000, 400]"
-    [results]="userChartData"
-    [scheme]="userChartOptions.colorScheme"
-    [xAxis]="userChartOptions.showXAxis"
-    [yAxis]="userChartOptions.showYAxis"
-    [legend]="userChartOptions.showLegend"
-    [showXAxisLabel]="userChartOptions.showXAxisLabel"
-    [showYAxisLabel]="userChartOptions.showYAxisLabel"
-    [xAxisLabel]="userChartOptions.xAxisLabel"
-    [yAxisLabel]="userChartOptions.yAxisLabel">
-  </ngx-charts-line-chart>
+  <svg id="userChart"></svg>
 </div>
 
-<!-- User Activity Chart -->
 <div class="admin-dashboard">
   <h2>📊 User Activity Trends</h2>
-  <ngx-charts-bar-vertical
-    [view]="[1000, 400]"
-    [results]="activityChartData"
-    [scheme]="activityChartOptions.colorScheme"
-    [xAxis]="activityChartOptions.showXAxis"
-    [yAxis]="activityChartOptions.showYAxis"
-    [legend]="activityChartOptions.showLegend"
-    [showXAxisLabel]="activityChartOptions.showXAxisLabel"
-    [showYAxisLabel]="activityChartOptions.showYAxisLabel"
-    [xAxisLabel]="activityChartOptions.xAxisLabel"
-    [yAxisLabel]="activityChartOptions.yAxisLabel">
-  </ngx-charts-bar-vertical>
+  <svg id="activityChart"></svg>
 </div>
 
-<!-- Contact Form Chart -->
 <div class="admin-dashboard">
   <h2>📨 Contact Form Submissions</h2>
-  <ngx-charts-pie-chart
-    [view]="[1000, 400]"
-    [results]="contactChartData"
-    [scheme]="contactChartOptions.colorScheme"
-    [legend]="contactChartOptions.showLegend">
-  </ngx-charts-pie-chart>
+  <svg id="contactChart"></svg>
 </div>
 
-<!-- Registered Users Table -->
 <div class="admin-dashboard">
   <h2>📋 Registered Users</h2>
-  <table *ngIf="users.length > 0; else noUsers">
-    <thead>
-      <tr>
-        <th>👤 Name</th>
-        <th>📧 Email</th>
-        <th>📅 Registered Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users | slice:0:visibleUsers">
-        <td>{{ user.name || 'N/A' }}</td>
-        <td>{{ user.email || 'N/A' }}</td>
-        <td>{{ user.timestamp | date:'dd/MM/yyyy, h:mm a' }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table *ngIf="users.length > 0; else noUsers">
+      <thead>
+        <tr>
+          <th>👤 Name</th>
+          <th>📧 Email</th>
+          <th>📅 Registered Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | slice:0:visibleUsers">
+          <td>{{ user.name || 'N/A' }}</td>
+          <td>{{ user.email || 'N/A' }}</td>
+          <td>{{ user.timestamp | date:'dd/MM/yyyy, h:mm a' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <ng-template #noUsers>
     <p>No registered users found.</p>
   </ng-template>
@@ -81,23 +52,24 @@
   </button>
 </div>
 
-<!-- User Activity Logs Table -->
 <div class="admin-dashboard">
   <h2>📂 User Activity Logs</h2>
-  <table *ngIf="activityLogs.length > 0; else noLogs">
-    <thead>
-      <tr>
-        <th>👤 User Email</th>
-        <th>🕒 Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let log of activityLogs | slice:0:visibleLogs">
-        <td>{{ log.userId || 'N/A' }}</td>
-        <td>{{ log.timestamp | date:'dd/MM/yyyy, h:mm a' }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table *ngIf="activityLogs.length > 0; else noLogs">
+      <thead>
+        <tr>
+          <th>👤 User Email</th>
+          <th>🕒 Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of activityLogs | slice:0:visibleLogs">
+          <td>{{ log.userId || 'N/A' }}</td>
+          <td>{{ log.timestamp | date:'dd/MM/yyyy, h:mm a' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <ng-template #noLogs>
     <p>No activity logs found.</p>
   </ng-template>
@@ -107,29 +79,30 @@
   </button>
 </div>
 
-<!-- Contact Form Submissions Table -->
 <div class="admin-dashboard">
   <h2>📩 Contact Form Submissions</h2>
-  <table *ngIf="contactForms.length > 0; else noContacts">
-    <thead>
-      <tr>
-        <th>👤 Name</th>
-        <th>📧 Email</th>
-        <th>📝 Message</th>
-        <th>📅 Submitted Date</th>
-        <th>✉️ Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let form of contactForms | slice:0:visibleContacts">
-        <td>{{ form.name || 'N/A' }}</td>
-        <td>{{ form.email || 'N/A' }}</td>
-        <td>{{ form.message || 'N/A' }}</td>
-        <td>{{ form.date || 'N/A' }}</td>
-        <td><button (click)="openReplyModal(form.email)">Reply user</button></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table *ngIf="contactForms.length > 0; else noContacts">
+      <thead>
+        <tr>
+          <th>👤 Name</th>
+          <th>📧 Email</th>
+          <th>📝 Message</th>
+          <th>📅 Submitted Date</th>
+          <th>✉️ Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let form of contactForms | slice:0:visibleContacts">
+          <td>{{ form.name || 'N/A' }}</td>
+          <td>{{ form.email || 'N/A' }}</td>
+          <td>{{ form.message || 'N/A' }}</td>
+          <td>{{ form.timestamp | date:'dd/MM/yyyy, h:mm a' }}</td>
+          <td><button (click)="openReplyModal(form.email)">Reply user</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <ng-template #noContacts>
     <p>No contact form submissions found.</p>
   </ng-template>

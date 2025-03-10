@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, timestamp } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
@@ -48,17 +48,18 @@ export class CouchdbService {
     return this.http.put(`${this.baseUrl}/${docId}`, data, { headers: this.getHeaders() });
   }
   
-  //Contact forms
-  submitContactForm(data: any): Observable<any> {
-    data  = {...data, type : "contact"};
+   // Contact forms
+   submitContactForm(data: any): Observable<any> {
+    const timestamp=new Date().toISOString();
+    data = { ...data, type: 'contact',timestamp}; // Add type and ensure submittedDate is included
     const docId = `contact_2_${uuidv4()}`; 
     return this.http.put(`${this.baseUrl}/${docId}`, data, { headers: this.getHeaders() });
   }
 
   // Get all contact form submissions
-fetchContactForms(): Observable<any> {
-  return this.http.get<any>(`${this.baseUrl}/_design/views/_view/contact_forms`, { headers: this.getHeaders() });
-}
+  fetchContactForms(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/_design/views/_view/contact_forms`, { headers: this.getHeaders() });
+  }
 
    // Add login activity to activity_logs view (Login)
    logUserActivity(activityLog: any): Observable<any> {
@@ -71,6 +72,7 @@ fetchContactForms(): Observable<any> {
 getUserActivityLogs(): Observable<any> {
   return this.http.get<any>(`${this.baseUrl}/_design/views/_view/activity_logs`, { headers: this.getHeaders() });
 }
+ 
 
 
 //

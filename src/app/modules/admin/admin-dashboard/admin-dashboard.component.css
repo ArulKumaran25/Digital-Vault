@@ -1,148 +1,26 @@
+/* Admin Dashboard Container */
 .admin-dashboard {
   max-width: 1100px;
   margin: 60px auto 20px;
   padding: 25px;
-  background: linear-gradient(145deg, #EAE2D0, #F4EEDD); 
+  background: linear-gradient(145deg, #EAE2D0, #F4EEDD);
   color: #5C4B31;
   border-radius: 20px;
   box-shadow: 6px 6px 15px #c9c2b1, -6px -6px 15px #ffffff;
   backdrop-filter: blur(12px);
-  
-  h2 {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    color: #806F40;
-    font-weight: bold;
-    text-align: center;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .card {
-    background: #F4EEDD;
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: inset 4px 4px 10px #d6cbb7, inset -4px -4px 10px #ffffff;
-    transition: all 0.3s ease-in-out;
-    margin-bottom: 20px;
-    
-    &:hover {
-      transform: scale(1.02);
-      box-shadow: 6px 6px 12px #c9c2b1, -6px -6px 12px #ffffff;
-    }
-  }
-
-  table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 12px;
-    margin: 20px 0;
-    font-size: 1rem;
-    border-radius: 12px;
-    overflow: hidden;
-    
-    thead {
-      background: linear-gradient(145deg, #D5C4A1, #E7DAC6);
-      color: #5C4B31;
-      font-weight: bold;
-      text-transform: uppercase;
-      box-shadow: 3px 3px 6px #c9c2b1, -3px -3px 6px #ffffff;
-      
-      th {
-        padding: 14px;
-        text-align: left;
-      }
-    }
-
-    tbody {
-      tr {
-        background: linear-gradient(145deg, #F4EEDD, #EAE2D0);
-        transition: all 0.3s ease;
-        border-radius: 8px;
-        box-shadow: 3px 3px 6px #d6cbb7, -3px -3px 6px #ffffff;
-        
-        &:hover {
-          background: linear-gradient(145deg, #E7DAC6, #D5C4A1);
-          transform: translateY(-2px);
-          box-shadow: 4px 4px 10px #c9c2b1, -4px -4px 10px #ffffff;
-        }
-        
-        td {
-          padding: 14px;
-          text-align: left;
-          font-size: 0.95rem;
-        }
-      }
-    }
-  }
-
-  .button {
-    background: linear-gradient(145deg, #806F40, #5C4B31);
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-transform: uppercase;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-    box-shadow: 4px 4px 8px #5c4b31, -4px -4px 8px #806F40;
-
-    &:hover {
-      transform: scale(1.05);
-      background: linear-gradient(145deg, #5C4B31, #806F40);
-      box-shadow: 6px 6px 12px #5c4b31, -6px -6px 12px #806F40;
-    }
-  }
-
-  .input {
-    background: #F4EEDD;
-    border: 2px solid #D5C4A1;
-    border-radius: 12px;
-    padding: 12px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    box-shadow: inset 4px 4px 6px #d6cbb7, inset -4px -4px 6px #ffffff;
-
-    &:focus {
-      outline: none;
-      border-color: #806F40;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    }
-  }
 }
 
-.toggle-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin: 15px auto;
-  padding: 10px 18px;
-  font-size: 1rem;
-  font-weight: bold;
-  background: #F4EEDD;
-  color: #5C4B31;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 4px 4px 8px #c9c2b1, -4px -4px 8px #ffffff;
-}
-
-.toggle-button span {
-  display: flex;
-  align-items: center;
-}
-
-.toggle-button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(145deg, #EAE2D0, #F4EEDD);
-  box-shadow: 6px 6px 12px #c9c2b1, -6px -6px 12px #ffffff;
+.admin-dashboard h2 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
   color: #806F40;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-
+/* Welcome Card */
 .welcome-card {
   max-width: 1100px;
   margin: 40px auto 20px;
@@ -182,6 +60,107 @@
   color: #5C4B31;
   margin: 5px 0 0;
 }
+
+/* Scrollable Table Container */
+.table-container {
+  max-height: 400px; /* Set a fixed height for the table container */
+  overflow-y: auto; /* Enable vertical scrolling */
+  margin: 20px 0;
+  border-radius: 12px;
+  box-shadow: 3px 3px 6px #d6cbb7, -3px -3px 6px #ffffff;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  font-size: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+table thead {
+  background: linear-gradient(145deg, #D5C4A1, #E7DAC6);
+  color: #5C4B31;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 6px #c9c2b1, -3px -3px 6px #ffffff;
+  position: sticky; /* Make the header sticky */
+  top: 0; /* Stick to the top of the container */
+  z-index: 1; /* Ensure the header is above the table rows */
+}
+
+table thead th {
+  padding: 14px;
+  text-align: left;
+}
+
+table tbody tr {
+  background: linear-gradient(145deg, #F4EEDD, #EAE2D0);
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 3px 3px 6px #d6cbb7, -3px -3px 6px #ffffff;
+}
+
+table tbody tr:hover {
+  background: linear-gradient(145deg, #E7DAC6, #D5C4A1);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 10px #c9c2b1, -4px -4px 10px #ffffff;
+}
+
+table tbody td {
+  padding: 14px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+/* Buttons */
+.button {
+  background: linear-gradient(145deg, #806F40, #5C4B31);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 8px #5c4b31, -4px -4px 8px #806F40;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(145deg, #5C4B31, #806F40);
+  box-shadow: 6px 6px 12px #5c4b31, -6px -6px 12px #806F40;
+}
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px auto;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: bold;
+  background: #F4EEDD;
+  color: #5C4B31;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 8px #c9c2b1, -4px -4px 8px #ffffff;
+}
+
+.toggle-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(145deg, #EAE2D0, #F4EEDD);
+  box-shadow: 6px 6px 12px #c9c2b1, -6px -6px 12px #ffffff;
+  color: #806F40;
+}
+
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -245,4 +224,127 @@
   color: red;
   font-size: 14px;
   margin-top: 5px;
+}
+
+/* Graph Styles */
+svg {
+  display: block;
+  margin: 20px auto;
+  background: #F4EEDD;
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px #c9c2b1, -4px -4px 8px #ffffff;
+}
+
+.bar {
+  transition: fill 0.3s ease;
+}
+
+.bar:hover {
+  fill: #c3a867; /* Highlight color on hover */
+}
+
+.axis-label {
+  font-size: 12px;
+  fill: #5C4B31; /* Dark brown color for axis labels */
+}
+
+.axis-line {
+  stroke: #5C4B31; /* Dark brown color for axis lines */
+  stroke-width: 1;
+}
+
+.grid-line {
+  stroke: #D5C4A1; /* Light brown color for grid lines */
+  stroke-width: 0.5;
+  stroke-dasharray: 2, 2;
+}
+
+.chart-title {
+  font-size: 16px;
+  fill: #806F40; /* Dark gold color for chart titles */
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+.tooltip {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  font-size: 12px;
+  color: #5C4B31;
+}
+
+/* Pie Chart Styles */
+.arc {
+  transition: opacity 0.3s ease;
+}
+
+.arc:hover {
+  opacity: 0.8; /* Highlight pie chart segments on hover */
+}
+
+.pie-label {
+  font-size: 12px;
+  fill: #5C4B31; /* Dark brown color for pie chart labels */
+  text-anchor: middle;
+}
+
+/* Responsive Design for Graphs */
+@media (max-width: 768px) {
+  svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .chart-title {
+    font-size: 14px;
+  }
+
+  .axis-label {
+    font-size: 10px;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 15px;
+  }
+
+  .welcome-card {
+    padding: 15px;
+  }
+
+  .welcome-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .welcome-content p {
+    font-size: 0.9rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  table thead th {
+    padding: 10px;
+  }
+
+  table tbody td {
+    padding: 10px;
+  }
+
+  .button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .toggle-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
 }
